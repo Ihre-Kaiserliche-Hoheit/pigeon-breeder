@@ -59,7 +59,7 @@ Represents how fast the pigeon is, important for selling them as race pigeons, a
   - [ ] Dynamically calculate pigeon value
   - [ ] Add championships for different pigeon traits that allow you to earn money
 
-- [ ] Other ToDos
+- [ ] Other ToDo
   - [ ] Add family tree printout
 	- [x] Make naming convention of variables unified
 
