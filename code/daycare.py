@@ -33,13 +33,8 @@ class daycare:
 
 		return newPigeon
 
-	def generateRandomPigeon(self):
-		randomPigeon = self.createPigeon(self.getPigeonUID(), "Randy", bool(getrandbits(1)))
-		randomPigeon.genetics["fluff"] = randint(3, 18)
-		randomPigeon.genetics["speed"] = randint(3, 18)
-		randomPigeon.genetics["size"] = randint(3, 18)
 
-		return randomPigeon
+	# generateRandomPigeon() removed because it wasn't used
 
 	def buyPigeon(self):
 		while True:
@@ -58,7 +53,7 @@ class daycare:
 				Cost: {data["cost"]}
 				Fluffiness: {data["fluff"]}
 				Size: {data["size"]}
-				Speed: {data["speed"]}""")) # ToDo: Replace with dynamic value output for more thant the current traits
+				Speed: {data["speed"]}\n""")) # ToDo: Replace with dynamic value output for more thant the current traits
 
 
 			confirmation = input("Do you want to buy the pigeon?(Yes(y)/No(n)/Abort(a)) ")
@@ -79,12 +74,10 @@ class daycare:
 
 				uid = self.getPigeonUID()
 				pigeon = self.createPigeon(uid, "Pigeon " + str(uid), data["female"])
+				self.renamePigeon(str(uid), "r")
 				pigeon.age = data["age"]
 				for geneticKey in pigeon.genetics:
 					pigeon.genetics[geneticKey] = data[geneticKey]
-				#pigeon.genetics["fluff"] = data["fluff"]
-				#pigeon.genetics["speed"] = data["speed"]
-				#pigeon.genetics["size"] = data["size"]
 
 				break
 
@@ -252,6 +245,7 @@ class daycare:
 		command = command.split() # Splits command based on whitespaces
 
 		match command[0]:
+			# Replace this with dynamic funtion calls
 			case "breed":
 				if isEmpty(self.didNotActList()):
 					print("There are no pigeons left that can breed this month, either end this month or do something else.")
