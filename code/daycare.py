@@ -86,6 +86,10 @@ class daycare:
 
 	def sellPigeon(self, pigeonUID):
 		#Code to sell pigeons goes here
+		if not self.isValidPigeon(pigeonUID):
+			print("Pigeon not found or dead, try another pigeon")
+			return None
+
 		price = randint(5, 20)
 		confirmation = input("You can sell the pigeon for " + str(price) + ", do you accept? ((Yes(y)/No(n))")
 		confirmation = confirmation.lower()
@@ -147,8 +151,10 @@ class daycare:
 			if self.deathConditions(pigeon) and randint(0, 100) < 20:
 				self.death(pigeon)
 
+		print(self.info())
+
 	def info(self):
-		infoString = ("Daycare Name: " + self.name + "\n" +
+		infoString = ("\nDaycare Name: " + self.name + "\n" +
 		"Month: " + str(self.month))
 		infoString += "\nPigeons:"
 		if isNotEmpty(self.pigeons):
@@ -162,8 +168,13 @@ class daycare:
 		return infoString.rstrip()
 
 	def renamePigeon(self, pigeonUID, name):
+		if not self.isValidPigeon(pigeonUID):
+			print("Pigeon not found or dead, try another pigeon")
+			return None
+
 		if name == "r":
 			name = self.getRandomName(self.pigeons[str(pigeonUID)].getGender())
+
 		self.pigeons[str(pigeonUID)].name = name
 
 	def isValidPigeon(self, pigeonUID):
@@ -239,6 +250,9 @@ class daycare:
 	def renamePigeonCare(self, newName:str):
 		self.name = newName
 
+	def commandHelp(self):
+		print(self.help)
+
 	def do(self, command):
 		command = command.lower()
 
@@ -267,26 +281,19 @@ class daycare:
 				self.buyPigeon()
 
 			case "sell":
-				if self.isValidPigeon(command[1]):
-					self.sellPigeon(command[1])
-				else:
-					print("Pick another pigeon")
+				self.sellPigeon(command[1])
 
 			case "kill":
 				pass # ToDo: Add way for player to activly kill pigeons
 
 			case "rename":
-				if not self.isValidPigeon(command[1]):
-					print("Pigeon not found or dead, try another pigeon")
-					return None
 				self.renamePigeon(command[1], command[2])
 
 			case "pass":
 				self.update()
-				print(self.info())
 
 			case "help" | "h":
-				print(self.help)
+				self.commandHelp()
 
 			case "clear":
 				clearCMD()
