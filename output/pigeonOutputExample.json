@@ -1,7 +1,7 @@
 {
   "0":{
 	"uid":0,
-	"name":Taubias,
+	"name":"Taubias",
 	"age":32,
 	"isFemale":false,
 	"isAlive":true,
@@ -15,7 +15,7 @@
   },
   "1":{
 	"uid":1,
-	"name":Ursula,
+	"name":"Ursula",
 	"age":13,
 	"isFemale":true,
 	"isAlive":true,
