@@ -41,22 +41,28 @@ class pigeonClass:
 			genetics[geneticKey] = 0
 		return genetics
 
-	def show(self):
+	def returnGeneticValueString(self):
+		geneticValueString = "\n"
+		for geneticValueKey in self.genetics:
+			geneticValueString += "%s: %s\n"%(geneticValueKey, self.genetics[geneticValueKey])
+		return geneticValueString.rstrip().title()
+
+	def returnParentsString(self):
 		parents = ""
 		if self.parents != None:
 			for parent in self.parents:
 				parents += str(parent.uid) + ", "
 			parents = parents.rstrip(", ")
 
-		stringyBoi = f"""\
-			UID: {self.uid}
-			Name: {self.name}
-			Age: {self.age} Months
-			Gender: {self.getGender()}
-			Alive: {self.isAlive}
-			Parents: {parents}
-			Fluffiness: {self.genetics["fluff"]}
-			Size: {self.genetics["size"]}
-			Speed: {self.genetics["speed"]}""" # ToDo: Make genetic value list dynamically sized so that any amount of traits can be shown
+		return parents if parents != "" else None
+
+	def show(self):
+		stringyBoi = ("UID: %s \n"%(self.uid) +
+			"Name: %s \n"%(self.name) +
+			"Age: %s Months \n"%(self.age) +
+			"Gender: %s \n"%(self.getGender()) +
+			"Alive: %s \n"%(self.isAlive) +
+			"Parents: %s"%(self.returnParentsString()) +
+			self.returnGeneticValueString())
 
 		return tw.dedent(stringyBoi)
