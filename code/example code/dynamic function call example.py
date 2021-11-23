@@ -1,4 +1,3 @@
-
 # Dynamic function calls
 
 def hello():

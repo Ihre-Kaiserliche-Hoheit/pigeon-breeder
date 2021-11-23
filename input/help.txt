@@ -4,8 +4,8 @@ HELP MENU
 	info - Shows all info about your pigeon care
 	show - show [uid] | Shows you a pigeon of your choice
 	breed - breed [uid] [uid] | Allows you to breed two pigeons
-	buy - gives you a random pigeon to buy
-	sell - sell [uid] | allows you to sell a pigeon
-	rename - rename [uid] [newName] | allows you to rename a pigeon, if only an r is used for the name a random name is chosen from pigeonNames.json
-	pass - ends month
+	buy - Gives you a random pigeon to buy
+	sell - sell [uid] | Allows you to sell a pigeon
+	rename - rename [uid] [newName] | Allows you to rename a pigeon, if only an r is used for the name a random name is chosen from pigeonNames.json
+	pass - Ends month
 	quit/q - Ends the game

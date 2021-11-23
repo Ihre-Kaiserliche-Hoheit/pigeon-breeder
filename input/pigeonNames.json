@@ -2,11 +2,13 @@
   "male":[
 	"Bob",
 	"Fred",
-	"Taubias"
+	"Taubias",
+  "Olaf"
   ],
   "female":[
 	"Emma",
 	"Elizabeth",
-	"Berbel"
+	"Berbel",
+  "Hanna"
   ]
 }

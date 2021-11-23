@@ -2,7 +2,7 @@ from daycare import daycare
 from common import inputString
 
 def main():
-	care = daycare("Test Care", "../input/pigeonNames.json", "../input/help.txt")
+	care = daycare(input("How do you want to call your pigeon care?\n"), "../input/pigeonNames.json", "../input/help.txt")
 	care.do("help")
 
 	while True:

@@ -45,16 +45,18 @@ class pigeonClass:
 		parents = ""
 		if self.parents != None:
 			for parent in self.parents:
-				parents += f"Parent: {parent.uid}\n"
+				parents += str(parent.uid) + ", "
+			parents = parents.rstrip(", ")
 
 		stringyBoi = f"""\
 			UID: {self.uid}
 			Name: {self.name}
 			Age: {self.age} Months
 			Gender: {self.getGender()}
-			Alive: {self.isAlive} {parents}
+			Alive: {self.isAlive}
+			Parents: {parents}
 			Fluffiness: {self.genetics["fluff"]}
 			Size: {self.genetics["size"]}
-			Speed: {self.genetics["speed"]}"""
+			Speed: {self.genetics["speed"]}""" # ToDo: Make genetic value list dynamically sized so that any amount of traits can be shown
 
 		return tw.dedent(stringyBoi)

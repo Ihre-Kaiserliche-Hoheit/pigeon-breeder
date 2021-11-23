@@ -25,6 +25,34 @@
 	  "speed":7
 	},
 	"parents":[0],
-	"children":null
+	"children":[3]
+  },
+  "2":{
+    "uid":2,
+  	"name":"Hans",
+  	"age":14,
+  	"isFemale":false,
+  	"isAlive":true,
+  	"genetics":{
+  	  "fluff":13,
+  	  "size":8,
+  	  "speed":5
+  	},
+  	"parents":null,
+  	"children":[3]
+  },
+  "3":{
+    "uid":3,
+  	"name":"Günni",
+  	"age":6,
+  	"isFemale":false,
+  	"isAlive":true,
+  	"genetics":{
+  	  "fluff":10,
+  	  "size":9,
+  	  "speed":7
+  	},
+  	"parents":[1, 2],
+  	"children":null
   }
 }

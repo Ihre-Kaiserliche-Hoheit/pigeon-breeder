@@ -8,7 +8,7 @@ class daycare:
 	def __init__(self, name, randomNameFilePath:str, helpFilePath:str):
 		self.name = name
 
-		self.month = 1
+		self.month = 1 # Time is given in months
 
 		self.wealth = 50
 
@@ -32,7 +32,6 @@ class daycare:
 		self.pigeons[str(newPigeon.uid)] = newPigeon
 
 		return newPigeon
-
 
 	# generateRandomPigeon() removed because it wasn't used
 
@@ -116,7 +115,7 @@ class daycare:
 	def breed(self, male, female):
 		timesBreed = [female.timesBreed, male.timesBreed]
 		pigeons = [male, female]
-		modifier = 0
+		modifier = 0 # Modifies the propability of reproduction, pigeons that breed the first time should get a modifier = 2
 		alwaysSucceed = False # Left in for potential future uses
 
 		for value in timesBreed:
