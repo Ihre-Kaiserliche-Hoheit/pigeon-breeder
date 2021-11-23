@@ -65,4 +65,4 @@ class pigeonClass:
 			"Parents: %s"%(self.returnParentsString()) +
 			self.returnGeneticValueString())
 
-		return tw.dedent(stringyBoi)
+		return stringyBoi
