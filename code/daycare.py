@@ -251,7 +251,7 @@ class daycare:
 		self.name = newName
 
 	def commandHelp(self):
-		print(self.help)
+		print(self.help.rstrip())
 
 	def do(self, command):
 		command = command.lower()
@@ -292,7 +292,7 @@ class daycare:
 			case "pass":
 				self.update()
 
-			case "help" | "h":
+			case "help" | "h" | "?":
 				self.commandHelp()
 
 			case "clear":

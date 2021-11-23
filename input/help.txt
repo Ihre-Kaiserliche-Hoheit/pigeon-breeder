@@ -1,6 +1,6 @@
 HELP MENU
 	LIST OF COMMANDS:
-	help/h - Calls this menu
+	help/h/? - Calls this menu
 	info - Shows all info about your pigeon care
 	show - show [uid] | Shows you a pigeon of your choice
 	breed - breed [uid] [uid] | Allows you to breed two pigeons
