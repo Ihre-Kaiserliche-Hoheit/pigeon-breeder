@@ -19,6 +19,11 @@ class daycare:
 
 		self.randomNames = load(open(randomNameFilePath, "r"))
 		self.help = open(helpFilePath, "r").read()
+		self.values = {
+			"fluff":0,
+			"size":0,
+			"speed":0
+		}
 
 	def getPigeonUID(self):
 		return len(self.allPigeons) # Returns a UID for the most recent pigeon
@@ -35,33 +40,31 @@ class daycare:
 
 	# generateRandomPigeon() removed because it wasn't used
 
+	def calcCost(self, pigeonValues):
+		cost = 0
+		for value in self.values.keys():
+			cost += int(round(pigeonValues[value] * 0.5, 0))
+		return cost
+
 	def buyPigeon(self):
 		while True:
 			data = {
 				"age":randint(6, 72),
-				"female":bool(getrandbits(1)),
-				"fluff": random3D6(),
-				"speed": random3D6(),
-				"size": random3D6(), # ToDo: Add dynamic support for more values
-				"cost":randint(5, 15)
+				"female":bool(getrandbits(1))
 			}
 
-			print(tw.dedent(f"""
-				Age: {data["age"]} Months
-				Gender: {"Female" if data["female"] else "Male"}
-				Cost: {data["cost"]}
-				Fluffiness: {data["fluff"]}
-				Size: {data["size"]}
-				Speed: {data["speed"]}\n""")) # ToDo: Replace with dynamic value output for more thant the current traits
+			for value in self.values.keys():
+				data[value] = random3D6()
 
+			data["cost"] = self.calcCost(data)
+			infoString = "Age: %s Months\nGender: %s\nCost: %s\n"%(data["age"], "Female" if data["female"] else "Male", data["cost"])
+			for value in self.values.keys():
+				infoString += "%s: %s\n"%(value.title(), data[value])
+			print(infoString)
 
-			confirmation = input("Do you want to buy the pigeon?(Yes(y)/No(n)/Abort(a)) ")
-			confirmation = confirmation.lower()
+			confirmation = input("Do you want to buy the pigeon?(Yes(y)/No(n)/Abort(a)) ").lower()
 
-			if confirmation == "n":
-				continue
-
-			elif confirmation == "y":
+			if yes(confirmation):
 				if self.wealth < data["cost"]:
 					print("You have not enought money to buy this pigeon!")
 					#Reuses confirmation variable
@@ -80,8 +83,11 @@ class daycare:
 
 				break
 
-			else:
+			elif abort(confirmation):
 				break
+
+			else:
+				continue
 
 	def sellPigeon(self, pigeonUID):
 		#Code to sell pigeons goes here
@@ -89,13 +95,15 @@ class daycare:
 			print("Pigeon not found or dead, try another pigeon")
 			return None
 
-		price = randint(5, 20)
+		price = self.livingPigeons[pigeonUID].calcValues()
 		confirmation = input("You can sell the pigeon for " + str(price) + ", do you accept? ((Yes(y)/No(n))")
 		confirmation = confirmation.lower()
 
-		if confirmation == "y":
+		if yes(confirmation):
 			self.death(self.pigeons[pigeonUID])
+			self.wealth += price
 			print("Pigeon sold!")
+
 		else:
 			print("Okay, then not")
 
@@ -204,7 +212,7 @@ class daycare:
 		return lopthna
 
 	def genetics(self, parents):
-		geneticDict = parents[0].returnEmptyGenetics()
+		geneticDict = self.values
 
 		for pigeon in parents:
 			for geneticKey in pigeon.genetics:

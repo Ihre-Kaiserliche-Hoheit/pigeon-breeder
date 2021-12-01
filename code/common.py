@@ -32,3 +32,19 @@ def random3D6():
 		result += randint(1, 6) # This gives a nice bell curve
 
 	return result
+
+def yes(value):
+	value = str(value).lower()
+	match value:
+		case "yes" | "ye" | "y" | "oi":
+			return True
+		case _:
+			return False
+
+def abort(value):
+	value = str(value).lower()
+	match value:
+		case "abort" | "a":
+			return True
+		case _:
+			return False

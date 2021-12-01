@@ -20,6 +20,10 @@ class pigeonClass:
 			"size":1
 		}
 
+		self.effectiveValues = self.genetics
+
+		self.price = self.calcValues()
+
 		self.parents = parents
 		self.children = dict() #Dictionary of all children
 
@@ -55,6 +59,14 @@ class pigeonClass:
 			parents = parents.rstrip(", ")
 
 		return parents if parents != "" else None
+
+	def calcValues(self, values):
+		price = 0
+		for value in values.keys():
+			self.effectiveValues[value] = self.genetics[value]
+			price += self.effectiveValues[value] * (1 - (age+1)/50)
+		price += -(age*0.2)
+		return price
 
 	def show(self):
 		stringyBoi = ("UID: %s \n"%(self.uid) +
