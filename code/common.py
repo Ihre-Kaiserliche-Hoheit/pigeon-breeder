@@ -33,6 +33,9 @@ def random3D6():
 
 	return result
 
+def curve(a:float, x:float, d:float, e:float):
+	return a * (x-d)**2 + e
+
 def yes(value):
 	value = str(value).lower()
 	match value:

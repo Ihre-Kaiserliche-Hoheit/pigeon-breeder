@@ -43,7 +43,8 @@ class daycare:
 	def calcCost(self, pigeonValues):
 		cost = 0
 		for value in self.values.keys():
-			cost += int(round(pigeonValues[value] * 0.5, 0))
+			cost += pigeonValues[value] * 0.5
+		cost = cost * curve(-0.9, (pigeonValues["age"]/36), 0, 1)
 		return cost
 
 	def buyPigeon(self):
