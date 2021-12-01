@@ -1,5 +1,4 @@
 from common import *
-import textwrap as tw
 
 class pigeonClass:
 	def __init__(self, pigeonUID, name, sex, parents:list=None):
@@ -14,20 +13,11 @@ class pigeonClass:
 
 		self.didAct = True
 
-		self.genetics = {
-			"fluff":1,
-			"speed":1,
-			"size":1
-		}
+		self.genes = dict()
 
-		self.genes = {
-			"feather color":["A", "A"],
-			"eye color":["A", "A"]
-		}
+		self.effectiveValues = self.genes
 
-		self.effectiveValues = self.genetics
-
-		self.price = self.calcValues()
+		self.price = 0
 
 		self.parents = parents
 		self.children = dict() #Dictionary of all children
@@ -38,17 +28,6 @@ class pigeonClass:
 
 	def getGender(self):
 		return "Female" if self.isFemale else "Male"
-
-	def anyGeneticValueOneOrLess(self):
-		for geneticValueKey in self.genetics.keys():
-			if self.genetics[geneticValueKey] <= 1:
-				return True
-
-	def returnEmptyGenetics(self):
-		genetics = dict()
-		for geneticKey in self.genetics.keys():
-			genetics[geneticKey] = 0
-		return genetics
 
 	def returnGeneticValueString(self):
 		geneticValueString = "\n"
