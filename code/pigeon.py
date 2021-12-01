@@ -20,6 +20,11 @@ class pigeonClass:
 			"size":1
 		}
 
+		self.genes = {
+			"feather color":["A", "A"],
+			"eye color":["A", "A"]
+		}
+
 		self.effectiveValues = self.genetics
 
 		self.price = self.calcValues()

@@ -225,6 +225,10 @@ class daycare:
 		for geneticKey in geneticDict:
 			geneticDict[geneticKey] = int(geneticDict[geneticKey] / len(parents)) + randint(-3, 3)
 
+		for parent in parents:
+			for geneKey in parent.genes.keys():
+				pass
+
 		return geneticDict
 
 	def deathConditions(self, pigeon):
