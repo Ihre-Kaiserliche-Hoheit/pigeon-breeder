@@ -1,7 +1,7 @@
 from common import *
 
 class pigeonClass:
-	def __init__(self, pigeonUID, name, sex, parents:list=None):
+	def __init__(self, pigeonUID, name, sex, parents:list=None, genes):
 		self.uid = pigeonUID
 		self.name = name
 		self.age = 0 # Age in months
@@ -13,9 +13,8 @@ class pigeonClass:
 
 		self.didAct = True
 
-		self.genes = dict()
-
-		self.effectiveValues = self.genes
+		self.genes = genes
+		self.effectiveValues = dict()
 
 		self.price = 0
 

@@ -31,6 +31,7 @@ def curve(a:float, x:float, d:float, e:float):
 
 def yes(value):
 	value = str(value).lower()
+
 	match value:
 		case "yes" | "ye" | "y" | "oi" | "oy" | "ay":
 			return True
@@ -39,6 +40,7 @@ def yes(value):
 
 def abort(value):
 	value = str(value).lower()
+	
 	match value:
 		case "abort" | "a":
 			return True
