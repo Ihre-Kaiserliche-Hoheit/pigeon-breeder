@@ -1,6 +1,6 @@
 from pigeon import *
 from common import *
-from random import getrandbits, randint, choice
+from random import getrandbits, randint, choice, choices
 import textwrap as tw
 from json import load
 
@@ -20,8 +20,10 @@ class daycare:
 		self.randomNames = load(open(randomNameFilePath, "r"))
 		self.help = open(helpFilePath, "r").read()
 		self.genes = {
-			"size":""
+			"chromosome":""
 		}
+		self.geneValues = ["fluff", "speed", "size"]
+		self.alleles = "ABCDEFGabcdefg"
 
 	def getPigeonUID(self):
 		return len(self.allPigeons) # Returns a UID for the most recent pigeon
@@ -29,7 +31,7 @@ class daycare:
 	def getRandomName(self, sex:str):
 		return choice(self.randomNames[sex.lower()]) # Returns random name
 
-	def createPigeon(self, pigeonUID, name, isFemale, parents:list=None):
+	def createPigeon(self, pigeonUID, name, isFemale, parents:list=None, genes:dict=dict()):
 		newPigeon = pigeonClass(pigeonUID, name, isFemale, parents)
 		self.allPigeons[str(newPigeon.uid)] = newPigeon
 		self.pigeons[str(newPigeon.uid)] = newPigeon
@@ -39,8 +41,8 @@ class daycare:
 	def calcCost(self, pigeonValues):
 		# Calculates the value of the pigeon
 		cost = 0
-
-		for value in self.values:
+		
+		for value in self.geneValues:
 			cost += pigeonValues[value] * 0.5
 		cost = cost * curve(-0.9, (pigeonValues["age"]/36), 1, 1) # 36 = Median Age
 
@@ -52,13 +54,19 @@ class daycare:
 				"age":randint(6, 72),
 				"female":bool(getrandbits(1))
 			}
+			genes = dict()
 
 			for gene in self.genes:
-				data[value] = random3D6()
+				genes[gene] = "".join(choices(self.alleles, k=2))
+
+			#print(genes)
+			genes = calcValues(genes)
+
+			data = data | genes
 
 			data["cost"] = self.calcCost(data)
 			infoString = "Age: %s Months\nGender: %s\nCost: %s\n"%(data["age"], "Female" if data["female"] else "Male", data["cost"])
-			for value in self.values:
+			for value in genes:
 				infoString += "%s: %s\n"%(value.title(), data[value])
 			print(infoString)
 
@@ -111,8 +119,8 @@ class daycare:
 		genes = self.genes
 
 		for parent in parents: # Picks one allele per parent
-			for geneKey in genes:
-				genes[geneKey] += choice(parent.genes[geneKey].split("")) # Picks random allele from parent
+			for geneKey in parent.genes:
+				genes[geneKey] += choice(parent.genes[geneKey]) # Picks random allele from parent
 
 		return genes
 
@@ -131,7 +139,7 @@ class daycare:
 	def breed(self, parents):
 		timesBreed = [parent.timesBreed for parent in parents]
 		modifier = 0 # Modifies the propability of reproduction, pigeons that breed the first time should get a modifier = 2
-		alwaysSucceed = False # Left in for potential future uses
+		alwaysSucceed = True # Left in for potential future uses
 
 		for value in timesBreed:
 			if value == 0:
@@ -247,7 +255,7 @@ class daycare:
 				print("You picked two pigeons of the same gender!")
 				return 0
 
-		if self.breed(male, female) == 0:
+		if self.breed([male, female]) == 0:
 			print("Success!")
 		else:
 			print("Failure")

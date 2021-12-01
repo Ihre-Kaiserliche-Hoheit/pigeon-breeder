@@ -1,7 +1,8 @@
 from common import *
+from string import digits, ascii_letters
 
 class pigeonClass:
-	def __init__(self, pigeonUID, name, sex, parents:list=None, genes):
+	def __init__(self, pigeonUID, name, sex, parents:list=None, genes:dict=dict()):
 		self.uid = pigeonUID
 		self.name = name
 		self.age = 0 # Age in months
@@ -14,7 +15,8 @@ class pigeonClass:
 		self.didAct = True
 
 		self.genes = genes
-		self.effectiveValues = dict()
+		self.effectiveValues = calcValues(self.genes)
+
 
 		self.price = 0
 
@@ -30,8 +32,8 @@ class pigeonClass:
 
 	def returnGeneticValueString(self):
 		geneticValueString = "\n"
-		for geneticValueKey in self.genetics:
-			geneticValueString += "%s: %s\n"%(geneticValueKey, self.genetics[geneticValueKey])
+		for geneticValueKey in self.genes:
+			geneticValueString += "%s: %s\n"%(geneticValueKey, self.genes[geneticValueKey])
 		return geneticValueString.rstrip().title()
 
 	def returnParentsString(self):
@@ -43,11 +45,6 @@ class pigeonClass:
 
 		return parents if parents != "" else None
 
-	def calcValues(self):
-		price = 0
-		for value in self.genetics.keys():
-			self.effectiveValues[value] = self.genetics[value]
-
 	def show(self):
 		stringyBoi = ("UID: %s \n"%(self.uid) +
 			"Name: %s \n"%(self.name) +
@@ -58,3 +55,50 @@ class pigeonClass:
 			self.returnGeneticValueString())
 
 		return stringyBoi
+
+def calcValues(genes):
+	geneValues = dict()
+	for geneKey in genes:
+		alleles = "".join(sorted(list(genes[geneKey])))
+
+		for allele in alleles:
+			lenAlleles = len(set([alleles.lower() for al in alleles]))
+			if lenAlleles == 1:
+				try:
+					geneValues[allele] += 2
+				except KeyError:
+					geneValues[allele] = 2
+				break
+
+			elif lenAlleles == 2:
+				try:
+					geneValues[alleles[0]] += 1
+				except KeyError:
+					geneValues[alleles[0]] = 1
+
+	effectiveValues = {
+		"speed":1,
+		"size":1,
+		"fluff":1
+	}
+
+	for alleleKey in geneValues:
+		match alleleKey:
+			case "A" | "a":
+				effectiveValues["speed"] += geneValues[alleleKey]
+
+			case "B" | "b":
+				effectiveValues["size"] += geneValues[alleleKey]
+
+			case "C" | "c":
+				effectiveValues["fluff"] += geneValues[alleleKey]
+
+			case "E" | "e":
+				effectiveValues["fluff"] -= geneValues[alleleKey]
+
+			case "F" | "f":
+				effectiveValues["size"] -= geneValues[alleleKey]
+
+			case "G" | "g":
+				effectiveValues["speed"] -= geneValues[alleleKey]
+	return effectiveValues
