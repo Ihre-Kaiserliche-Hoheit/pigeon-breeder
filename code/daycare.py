@@ -41,11 +41,14 @@ class daycare:
 	# generateRandomPigeon() removed because it wasn't used
 
 	def calcCost(self, pigeonValues):
+		# Calculates the value of the pigeon
 		cost = 0
+
 		for value in self.values.keys():
 			cost += pigeonValues[value] * 0.5
-		cost = cost * curve(-0.9, (pigeonValues["age"]/36), 0, 1)
-		return cost
+		cost = cost * curve(-0.9, (pigeonValues["age"]/36), 1, 1) # 36 = Median Age
+
+		return int(round(cost, 0))
 
 	def buyPigeon(self):
 		while True:
@@ -95,8 +98,9 @@ class daycare:
 		if not self.isValidPigeon(pigeonUID):
 			print("Pigeon not found or dead, try another pigeon")
 			return None
-
-		price = int(round(self.calcCost(self.pigeons[pigeonUID].effectiveValues) * 0.95))
+		values = self.pigeons[pigeonUID].effectiveValues
+		values["age"] = self.pigeons[pigeonUID].age
+		price = int(round(self.calcCost(values) * 0.95))
 		confirmation = input("You can sell the pigeon for " + str(price) + ", do you accept? ((Yes(y)/No(n)) ").lower()
 
 		if yes(confirmation):
