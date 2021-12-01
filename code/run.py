@@ -12,5 +12,7 @@ def main():
 		except EOFError:
 				print("\n")
 				break
+		except IndexError:
+			continue
 
 main()

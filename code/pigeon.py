@@ -60,13 +60,10 @@ class pigeonClass:
 
 		return parents if parents != "" else None
 
-	def calcValues(self, values):
+	def calcValues(self):
 		price = 0
-		for value in values.keys():
+		for value in self.genetics.keys():
 			self.effectiveValues[value] = self.genetics[value]
-			price += self.effectiveValues[value] * (1 - (age+1)/50)
-		price += -(age*0.2)
-		return price
 
 	def show(self):
 		stringyBoi = ("UID: %s \n"%(self.uid) +

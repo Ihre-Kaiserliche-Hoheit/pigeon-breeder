@@ -95,9 +95,8 @@ class daycare:
 			print("Pigeon not found or dead, try another pigeon")
 			return None
 
-		price = self.livingPigeons[pigeonUID].calcValues()
-		confirmation = input("You can sell the pigeon for " + str(price) + ", do you accept? ((Yes(y)/No(n))")
-		confirmation = confirmation.lower()
+		price = int(round(self.calcCost(self.pigeons[pigeonUID].effectiveValues) * 0.95))
+		confirmation = input("You can sell the pigeon for " + str(price) + ", do you accept? ((Yes(y)/No(n)) ").lower()
 
 		if yes(confirmation):
 			self.death(self.pigeons[pigeonUID])
@@ -261,9 +260,7 @@ class daycare:
 		print(self.help.rstrip())
 
 	def do(self, command):
-		command = command.lower()
-
-		command = command.split() # Splits command based on whitespaces
+		command = command.lower().split()
 
 		match command[0]:
 			# Replace this with dynamic funtion calls
