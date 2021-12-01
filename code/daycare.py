@@ -19,10 +19,8 @@ class daycare:
 
 		self.randomNames = load(open(randomNameFilePath, "r"))
 		self.help = open(helpFilePath, "r").read()
-		self.values = {
-			"fluff":0,
-			"size":0,
-			"speed":0
+		self.genes = {
+			"size":""
 		}
 
 	def getPigeonUID(self):
@@ -38,13 +36,11 @@ class daycare:
 
 		return newPigeon
 
-	# generateRandomPigeon() removed because it wasn't used
-
 	def calcCost(self, pigeonValues):
 		# Calculates the value of the pigeon
 		cost = 0
 
-		for value in self.values.keys():
+		for value in self.values:
 			cost += pigeonValues[value] * 0.5
 		cost = cost * curve(-0.9, (pigeonValues["age"]/36), 1, 1) # 36 = Median Age
 
@@ -57,12 +53,12 @@ class daycare:
 				"female":bool(getrandbits(1))
 			}
 
-			for value in self.values.keys():
+			for value in self.values:
 				data[value] = random3D6()
 
 			data["cost"] = self.calcCost(data)
 			infoString = "Age: %s Months\nGender: %s\nCost: %s\n"%(data["age"], "Female" if data["female"] else "Male", data["cost"])
-			for value in self.values.keys():
+			for value in self.values:
 				infoString += "%s: %s\n"%(value.title(), data[value])
 			print(infoString)
 
@@ -110,6 +106,11 @@ class daycare:
 
 		else:
 			print("Okay, then not")
+
+	def genetics(self, parents):
+		genes = self.genes
+
+		return genes
 
 	def reproduce(self, parents:list, numberOfChildren:int):
 		for i in range(numberOfChildren):
@@ -170,7 +171,7 @@ class daycare:
 		infoString += "\nPigeons:"
 		if isNotEmpty(self.pigeons):
 			infoString += "\n"
-			for pigeonKey in self.pigeons.keys():
+			for pigeonKey in self.pigeons:
 				pigeon = self.pigeons[pigeonKey]
 				infoString += ("UID: %s; Name: %s; Gender: %s; DidAct: %s\n"%(pigeon.uid, pigeon.name, pigeon.getGender(), pigeon.didAct))
 		else:
@@ -215,24 +216,8 @@ class daycare:
 				lopthna.append(pigeon)
 		return lopthna
 
-	def genetics(self, parents):
-		geneticDict = self.values
-
-		for pigeon in parents:
-			for geneticKey in pigeon.genetics:
-				geneticDict[geneticKey] += pigeon.genetics[geneticKey]
-
-		for geneticKey in geneticDict:
-			geneticDict[geneticKey] = int(geneticDict[geneticKey] / len(parents)) + randint(-3, 3)
-
-		for parent in parents:
-			for geneKey in parent.genes.keys():
-				pass
-
-		return geneticDict
-
 	def deathConditions(self, pigeon):
-		if 72 < pigeon.age or pigeon.anyGeneticValueOneOrLess():
+		if 72 < pigeon.age:
 			return True
 		return False
 
