@@ -1,0 +1,56 @@
+{
+  "care data": {
+    "name": "d",
+    "month": 1,
+    "wealth": 50,
+    "livingPigeons": [
+      "0"
+    ],
+    "allPigeons": [
+      "0"
+    ]
+  },
+  "pigeon data": {
+    "0": {
+      "uid": 0,
+      "name": "Berbel",
+      "age": 24,
+      "isFemale": true,
+      "canReproduce": true,
+      "isAlive": true,
+      "timesBreed": 0,
+      "didAct": true,
+      "genes": {
+        "chromosome0": "fD",
+        "chromosome1": "Gb",
+        "chromosome2": "Gb",
+        "chromosome3": "fg",
+        "chromosome4": "Bg",
+        "chromosome5": "ac",
+        "chromosome6": "CC",
+        "chromosome7": "Ga",
+        "chromosome8": "dG",
+        "chromosome9": "GF",
+        "chromosome10": "ce",
+        "chromosome11": "EF",
+        "chromosome12": "DE",
+        "chromosome13": "EB",
+        "chromosome14": "FF",
+        "chromosome15": "fE",
+        "chromosome16": "ab",
+        "chromosome17": "Bf",
+        "chromosome18": "GF",
+        "chromosome19": "eB",
+        "chromosome20": "ea"
+      },
+      "effectiveValues": {
+        "speed": -1,
+        "size": 1,
+        "fluff": 1
+      },
+      "genesSequenced": false,
+      "parents": null,
+      "children": []
+    }
+  }
+}

@@ -1,5 +1,6 @@
 from json import load, dump
-
+from pigeon import *
+import daycare as dycr
 def save(game):
     savefile = {
         "care data":{
@@ -13,11 +14,11 @@ def save(game):
         }
     }
     for pigeonUID in game.allPigeons:
-        savefile["pigeon data"][pigeonUID] = converPigeonSave(game.allPigeons[pigeonUID])
+        savefile["pigeon data"][pigeonUID] = convertPigeonSave(game.allPigeons[pigeonUID])
 
     dump(savefile, open("testsave.json", "w"), indent=2)
 
-def converPigeonSave(pigeon):
+def convertPigeonSave(pigeon):
     return {
         "uid":pigeon.uid,
         "name":pigeon.name,
@@ -34,5 +35,36 @@ def converPigeonSave(pigeon):
         "children":pigeon.children if pigeon.children == None else [child.uid for child in pigeon.children]
     }
 
-def load(gameName):
-    pass
+def loadSave(gameName):
+    savefile = load(open(gameName, "r"))
+
+    game = dycr.daycare(savefile["care data"]["name"], "../input/pigeonNames.json", "../input/help.txt")
+    game.wealth = savefile["care data"]["wealth"]
+    game.month = savefile["care data"]["month"]
+
+    for pigeonKey in savefile["care data"]["allPigeons"]:
+        game.allPigeons[pigeonKey] = convertPigeonLoad(savefile["pigeon data"][pigeonKey])
+
+    for pigeonKey in savefile["care data"]["livingPigeons"]:
+        game.pigeons[pigeonKey] = game.allPigeons[pigeonKey]
+
+    for pigeonKey in game.allPigeons:
+        if game.allPigeons[pigeonKey].parents != None:
+            game.allPigeons[pigeonKey].parents = [game.allPigeons[parentKey] for parentKey in game.allPigeons[pigeonKey].parents]
+        if len(game.allPigeons[pigeonKey].children) != 0:
+            game.allPigeons[pigeonKey].children = [game.allPigeons[childKey] for childKey in game.allPigeons[pigeonKey].children]
+
+    return game
+
+def convertPigeonLoad(pigeonData):
+    loadedPigeon = pigeonClass(pigeonData["uid"], pigeonData["name"], pigeonData["isFemale"], pigeonData["parents"], pigeonData["genes"])
+
+    loadedPigeon.age = pigeonData["age"]
+    loadedPigeon.canReproduce = pigeonData["canReproduce"]
+    loadedPigeon.isAlive = pigeonData["isAlive"]
+    loadedPigeon.timesBreed = pigeonData["timesBreed"]
+    loadedPigeon.didAct = pigeonData["didAct"]
+    loadedPigeon.genesSequenced = pigeonData["genesSequenced"]
+    loadedPigeon.children = pigeonData["children"]
+
+    return loadedPigeon

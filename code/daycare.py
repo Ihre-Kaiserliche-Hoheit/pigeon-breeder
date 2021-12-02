@@ -1,5 +1,6 @@
 from pigeon import *
 from common import *
+from save import *
 from random import getrandbits, randint, choice, choices
 import textwrap as tw
 from json import load
@@ -60,7 +61,7 @@ class daycare:
 
 	def calcCost(self, pigeonValues):
 		# Calculates the value of the pigeon
-		cost = 0
+		cost = 1
 
 		for value in self.geneValues:
 			cost += pigeonValues[value] * 0.5
@@ -339,7 +340,8 @@ class daycare:
 				return 0
 
 			case "save":
-				pass
+				save(self)
+				print("Saved!")
 
 			case _:
 				print("Command Not Found")
