@@ -1,6 +1,7 @@
 # ReadMe for the Pigeon Breeder
 ## Info
 Python Version: 3.10
+
 Most recent version always in the developer branch  
 Most recent stable version in the release branch
 
@@ -16,10 +17,6 @@ Enjoy!
   - [x] Add a system that prevents from a pigeon to breed multiple times a month
   - [x] Add genetic system for pigeons
 	- [ ] Add genetic diseases
-	- [x] Add genetic values
-	  - [x] Rewrite to be more modular
-  - Replace genetic values with superior allel system  
-  - [x] Add natural pigeon death
 - [ ] The Business System (v0.3)
   - [x] Dynamically calculate pigeon value
   - [ ] Add championships for different pigeon traits that allow you to earn money
