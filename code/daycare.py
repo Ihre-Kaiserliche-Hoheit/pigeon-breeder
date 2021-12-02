@@ -20,7 +20,27 @@ class daycare:
 		self.randomNames = load(open(randomNameFilePath, "r"))
 		self.help = open(helpFilePath, "r").read()
 		self.genes = {
-			"chromosome":""
+			"chromosome0":"",
+			"chromosome1":"",
+			"chromosome2":"",
+			"chromosome3":"",
+			"chromosome4":"",
+			"chromosome5":"",
+			"chromosome6":"",
+			"chromosome7":"",
+			"chromosome8":"",
+			"chromosome9":"",
+			"chromosome10":"",
+			"chromosome11":"",
+			"chromosome12":"",
+			"chromosome13":"",
+			"chromosome14":"",
+			"chromosome15":"",
+			"chromosome16":"",
+			"chromosome17":"",
+			"chromosome18":"",
+			"chromosome19":"",
+			"chromosome20":""
 		}
 		self.geneValues = ["fluff", "speed", "size"]
 		self.alleles = "ABCDEFGabcdefg"
@@ -32,7 +52,7 @@ class daycare:
 		return choice(self.randomNames[sex.lower()]) # Returns random name
 
 	def createPigeon(self, pigeonUID, name, isFemale, parents:list=None, genes:dict=dict()):
-		newPigeon = pigeonClass(pigeonUID, name, isFemale, parents)
+		newPigeon = pigeonClass(pigeonUID, name, isFemale, parents, genes)
 		self.allPigeons[str(newPigeon.uid)] = newPigeon
 		self.pigeons[str(newPigeon.uid)] = newPigeon
 
@@ -41,7 +61,7 @@ class daycare:
 	def calcCost(self, pigeonValues):
 		# Calculates the value of the pigeon
 		cost = 0
-		
+
 		for value in self.geneValues:
 			cost += pigeonValues[value] * 0.5
 		cost = cost * curve(-0.9, (pigeonValues["age"]/36), 1, 1) # 36 = Median Age
@@ -54,19 +74,18 @@ class daycare:
 				"age":randint(6, 72),
 				"female":bool(getrandbits(1))
 			}
-			genes = dict()
+			genetics = dict()
 
 			for gene in self.genes:
-				genes[gene] = "".join(choices(self.alleles, k=2))
+				genetics[gene] = "".join(choices(self.alleles, k=2))
 
-			#print(genes)
-			genes = calcValues(genes)
+			geneValues = calcValues(genetics)
 
-			data = data | genes
+			data = data | geneValues
 
 			data["cost"] = self.calcCost(data)
 			infoString = "Age: %s Months\nGender: %s\nCost: %s\n"%(data["age"], "Female" if data["female"] else "Male", data["cost"])
-			for value in genes:
+			for value in geneValues:
 				infoString += "%s: %s\n"%(value.title(), data[value])
 			print(infoString)
 
@@ -75,19 +94,17 @@ class daycare:
 			if yes(confirmation):
 				if self.wealth < data["cost"]:
 					print("You have not enought money to buy this pigeon!")
-					#Reuses confirmation variable
 					confirmation = input("Do you want to look for another pigeon(Yes(y)/No(n)) ")
+
 					if not yes(confirmation):
 						break
 					continue
 
 				uid = self.getPigeonUID()
-				pigeon = self.createPigeon(uid, "Pigeon " + str(uid), data["female"])
+				pigeon = self.createPigeon(uid, "Pigeon " + str(uid), data["female"], genes=genetics)
 				self.renamePigeon(str(uid), "r")
 				pigeon.age = data["age"]
 
-				for geneticKey in pigeon.genes:
-					pigeon.genes[geneticKey] = data[geneticKey]
 				break
 
 			elif abort(confirmation):
@@ -127,7 +144,8 @@ class daycare:
 	def reproduce(self, parents:list, numberOfChildren:int):
 		for i in range(numberOfChildren):
 			pigeonUID = self.getPigeonUID()
-			child = self.createPigeon(pigeonUID, "Pigeon " + str(pigeonUID), bool(getrandbits(1)), parents, self.genetics(parents))
+			genes = self.genetics(parents)
+			child = self.createPigeon(pigeonUID, "Pigeon " + str(pigeonUID), bool(getrandbits(1)), parents, genes)
 
 			if self.deathConditions(child):
 				self.death(child)
@@ -294,6 +312,14 @@ class daycare:
 			case "sell":
 				self.sellPigeon(command[1])
 
+			case "genetics":
+				try:
+					print(self.pigeons[command[1]].showGenes())
+				except KeyError:
+					print("Pigeon not found")
+				except IndexError:
+					print("Pigeon not found")
+
 			case "kill":
 				pass # ToDo: Add way for player to activly kill pigeons
 
@@ -311,6 +337,9 @@ class daycare:
 
 			case "quit" | "q":
 				return 0
+
+			case "save":
+				pass
 
 			case _:
 				print("Command Not Found")

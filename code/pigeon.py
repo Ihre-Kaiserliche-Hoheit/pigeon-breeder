@@ -16,7 +16,7 @@ class pigeonClass:
 
 		self.genes = genes
 		self.effectiveValues = calcValues(self.genes)
-
+		self.genesSequenced = False
 
 		self.price = 0
 
@@ -44,6 +44,12 @@ class pigeonClass:
 			parents = parents.rstrip(", ")
 
 		return parents if parents != "" else None
+
+	def showGenes(self):
+		geneString = ""
+		for chromosomeKey in self.genes:
+			geneString += self.genes[chromosomeKey]
+		return geneString
 
 	def show(self):
 		stringyBoi = ("UID: %s \n"%(self.uid) +
