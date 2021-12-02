@@ -32,8 +32,8 @@ class pigeonClass:
 
 	def returnGeneticValueString(self):
 		geneticValueString = "\n"
-		for geneticValueKey in self.genes:
-			geneticValueString += "%s: %s\n"%(geneticValueKey, self.genes[geneticValueKey])
+		for geneticValueKey in self.effectiveValues:
+			geneticValueString += "%s: %s\n"%(geneticValueKey, self.effectiveValues[geneticValueKey])
 		return geneticValueString.rstrip().title()
 
 	def returnParentsString(self):
@@ -83,9 +83,9 @@ def calcValues(genes):
 					geneValues[alleles[0]] = 1
 
 	effectiveValues = {
-		"speed":1,
-		"size":1,
-		"fluff":1
+		"speed":0,
+		"size":0,
+		"fluff":0
 	}
 
 	for alleleKey in geneValues:
@@ -107,4 +107,8 @@ def calcValues(genes):
 
 			case "G" | "g":
 				effectiveValues["speed"] -= geneValues[alleleKey]
+
+	for valueKey in effectiveValues:
+		if effectiveValues[valueKey] < 0:
+			effectiveValues[valueKey] = 0
 	return effectiveValues

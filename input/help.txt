@@ -8,4 +8,5 @@ HELP MENU
 	sell - sell [uid] | Allows you to sell a pigeon
 	rename - rename [uid] [newName] | Allows you to rename a pigeon, if only an r is used for the name a random name is chosen from pigeonNames.json
 	pass - Ends month
+	save - saves game
 	quit/q - Ends the game

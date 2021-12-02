@@ -16,7 +16,7 @@ def save(game):
     for pigeonUID in game.allPigeons:
         savefile["pigeon data"][pigeonUID] = convertPigeonSave(game.allPigeons[pigeonUID])
 
-    dump(savefile, open("testsave.json", "w"), indent=2)
+    dump(savefile, open("../saves/" + game.name.rstrip() + ".json", "w"), indent=2)
 
 def convertPigeonSave(pigeon):
     return {
@@ -32,11 +32,11 @@ def convertPigeonSave(pigeon):
         "effectiveValues":pigeon.effectiveValues,
         "genesSequenced":pigeon.genesSequenced,
         "parents":pigeon.parents if pigeon.parents == None else [parent.uid for parent in pigeon.parents],
-        "children":pigeon.children if pigeon.children == None else [child.uid for child in pigeon.children]
+        "children":pigeon.children if len(pigeon.children) == 0 else [pigeon.children[childKey].uid for childKey in pigeon.children]
     }
 
 def loadSave(gameName):
-    savefile = load(open(gameName, "r"))
+    savefile = load(open("../saves/" + gameName + ".json", "r"))
 
     game = dycr.daycare(savefile["care data"]["name"], "../input/pigeonNames.json", "../input/help.txt")
     game.wealth = savefile["care data"]["wealth"]
@@ -50,9 +50,12 @@ def loadSave(gameName):
 
     for pigeonKey in game.allPigeons:
         if game.allPigeons[pigeonKey].parents != None:
-            game.allPigeons[pigeonKey].parents = [game.allPigeons[parentKey] for parentKey in game.allPigeons[pigeonKey].parents]
+            game.allPigeons[pigeonKey].parents = [game.allPigeons[str(parentKey)] for parentKey in game.allPigeons[pigeonKey].parents]
         if len(game.allPigeons[pigeonKey].children) != 0:
-            game.allPigeons[pigeonKey].children = [game.allPigeons[childKey] for childKey in game.allPigeons[pigeonKey].children]
+            children = game.allPigeons[pigeonKey].children
+            game.allPigeons[pigeonKey].children = dict()
+            for childUID in children:
+                game.allPigeons[pigeonKey].children[childUID] = game.allPigeons[str(childUID)]
 
     return game
 
@@ -65,6 +68,6 @@ def convertPigeonLoad(pigeonData):
     loadedPigeon.timesBreed = pigeonData["timesBreed"]
     loadedPigeon.didAct = pigeonData["didAct"]
     loadedPigeon.genesSequenced = pigeonData["genesSequenced"]
-    loadedPigeon.children = pigeonData["children"]
+    loadedPigeon.children = pigeonData["children"] if len(pigeonData["children"]) != 0 else dict()
 
     return loadedPigeon

@@ -1,0 +1,293 @@
+{
+  "care data": {
+    "name": "d",
+    "month": 4,
+    "wealth": 50,
+    "livingPigeons": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "allPigeons": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ]
+  },
+  "pigeon data": {
+    "0": {
+      "uid": 0,
+      "name": "Berbel",
+      "age": 27,
+      "isFemale": true,
+      "canReproduce": true,
+      "isAlive": true,
+      "timesBreed": 4,
+      "didAct": true,
+      "genes": {
+        "chromosome0": "fD",
+        "chromosome1": "Gb",
+        "chromosome2": "Gb",
+        "chromosome3": "fg",
+        "chromosome4": "Bg",
+        "chromosome5": "ac",
+        "chromosome6": "CC",
+        "chromosome7": "Ga",
+        "chromosome8": "dG",
+        "chromosome9": "GF",
+        "chromosome10": "ce",
+        "chromosome11": "EF",
+        "chromosome12": "DE",
+        "chromosome13": "EB",
+        "chromosome14": "FF",
+        "chromosome15": "fE",
+        "chromosome16": "ab",
+        "chromosome17": "Bf",
+        "chromosome18": "GF",
+        "chromosome19": "eB",
+        "chromosome20": "ea"
+      },
+      "effectiveValues": {
+        "speed": 0,
+        "size": 0,
+        "fluff": 0
+      },
+      "genesSequenced": false,
+      "parents": null,
+      "children": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "1": {
+      "uid": 1,
+      "name": "Bob",
+      "age": 57,
+      "isFemale": false,
+      "canReproduce": true,
+      "isAlive": true,
+      "timesBreed": 4,
+      "didAct": true,
+      "genes": {
+        "chromosome0": "Da",
+        "chromosome1": "Ee",
+        "chromosome2": "bF",
+        "chromosome3": "EA",
+        "chromosome4": "AC",
+        "chromosome5": "Ef",
+        "chromosome6": "EG",
+        "chromosome7": "bG",
+        "chromosome8": "FE",
+        "chromosome9": "DD",
+        "chromosome10": "ed",
+        "chromosome11": "fg",
+        "chromosome12": "dE",
+        "chromosome13": "aa",
+        "chromosome14": "DE",
+        "chromosome15": "eD",
+        "chromosome16": "Fb",
+        "chromosome17": "FG",
+        "chromosome18": "Eg",
+        "chromosome19": "aG",
+        "chromosome20": "FG"
+      },
+      "effectiveValues": {
+        "speed": 2,
+        "size": 0,
+        "fluff": 0
+      },
+      "genesSequenced": false,
+      "parents": null,
+      "children": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "2": {
+      "uid": 2,
+      "name": "Pigeon 2",
+      "age": 1,
+      "isFemale": false,
+      "canReproduce": true,
+      "isAlive": true,
+      "timesBreed": 0,
+      "didAct": false,
+      "genes": {
+        "chromosome0": "aDDf",
+        "chromosome1": "EbEG",
+        "chromosome2": "bbFb",
+        "chromosome3": "AfAg",
+        "chromosome4": "CgAg",
+        "chromosome5": "fcfc",
+        "chromosome6": "ECEC",
+        "chromosome7": "babG",
+        "chromosome8": "FdFG",
+        "chromosome9": "DFDF",
+        "chromosome10": "dedc",
+        "chromosome11": "fFfF",
+        "chromosome12": "EDEE",
+        "chromosome13": "aEaB",
+        "chromosome14": "DFEF",
+        "chromosome15": "efeE",
+        "chromosome16": "FbFa",
+        "chromosome17": "FfFB",
+        "chromosome18": "gGgF",
+        "chromosome19": "aBaB",
+        "chromosome20": "FaGe"
+      },
+      "effectiveValues": {
+        "speed": 2,
+        "size": 0,
+        "fluff": 2
+      },
+      "genesSequenced": false,
+      "parents": [
+        1,
+        0
+      ],
+      "children": {}
+    },
+    "3": {
+      "uid": 3,
+      "name": "Pigeon 3",
+      "age": 1,
+      "isFemale": false,
+      "canReproduce": true,
+      "isAlive": true,
+      "timesBreed": 0,
+      "didAct": false,
+      "genes": {
+        "chromosome0": "aDDf",
+        "chromosome1": "EbEG",
+        "chromosome2": "bbFb",
+        "chromosome3": "AfAg",
+        "chromosome4": "CgAg",
+        "chromosome5": "fcfc",
+        "chromosome6": "ECEC",
+        "chromosome7": "babG",
+        "chromosome8": "FdFG",
+        "chromosome9": "DFDF",
+        "chromosome10": "dedc",
+        "chromosome11": "fFfF",
+        "chromosome12": "EDEE",
+        "chromosome13": "aEaB",
+        "chromosome14": "DFEF",
+        "chromosome15": "efeE",
+        "chromosome16": "FbFa",
+        "chromosome17": "FfFB",
+        "chromosome18": "gGgF",
+        "chromosome19": "aBaB",
+        "chromosome20": "FaGe"
+      },
+      "effectiveValues": {
+        "speed": 2,
+        "size": 0,
+        "fluff": 2
+      },
+      "genesSequenced": false,
+      "parents": [
+        1,
+        0
+      ],
+      "children": {}
+    },
+    "4": {
+      "uid": 4,
+      "name": "Pigeon 4",
+      "age": 0,
+      "isFemale": true,
+      "canReproduce": true,
+      "isAlive": true,
+      "timesBreed": 0,
+      "didAct": true,
+      "genes": {
+        "chromosome0": "aDaf",
+        "chromosome1": "EbeG",
+        "chromosome2": "bbbG",
+        "chromosome3": "AgAg",
+        "chromosome4": "CBAB",
+        "chromosome5": "fcfa",
+        "chromosome6": "GCGC",
+        "chromosome7": "Gaba",
+        "chromosome8": "FdFG",
+        "chromosome9": "DGDF",
+        "chromosome10": "eeee",
+        "chromosome11": "gFfE",
+        "chromosome12": "dEED",
+        "chromosome13": "aBaE",
+        "chromosome14": "EFEF",
+        "chromosome15": "efDf",
+        "chromosome16": "Faba",
+        "chromosome17": "FBFB",
+        "chromosome18": "EGgG",
+        "chromosome19": "aBaB",
+        "chromosome20": "FeFe"
+      },
+      "effectiveValues": {
+        "speed": 0,
+        "size": 2,
+        "fluff": 0
+      },
+      "genesSequenced": false,
+      "parents": [
+        1,
+        0
+      ],
+      "children": {}
+    },
+    "5": {
+      "uid": 5,
+      "name": "Pigeon 5",
+      "age": 0,
+      "isFemale": true,
+      "canReproduce": true,
+      "isAlive": true,
+      "timesBreed": 0,
+      "didAct": true,
+      "genes": {
+        "chromosome0": "aDaf",
+        "chromosome1": "EbeG",
+        "chromosome2": "bbbG",
+        "chromosome3": "AgAg",
+        "chromosome4": "CBAB",
+        "chromosome5": "fcfa",
+        "chromosome6": "GCGC",
+        "chromosome7": "Gaba",
+        "chromosome8": "FdFG",
+        "chromosome9": "DGDF",
+        "chromosome10": "eeee",
+        "chromosome11": "gFfE",
+        "chromosome12": "dEED",
+        "chromosome13": "aBaE",
+        "chromosome14": "EFEF",
+        "chromosome15": "efDf",
+        "chromosome16": "Faba",
+        "chromosome17": "FBFB",
+        "chromosome18": "EGgG",
+        "chromosome19": "aBaB",
+        "chromosome20": "FeFe"
+      },
+      "effectiveValues": {
+        "speed": 2,
+        "size": 0,
+        "fluff": 0
+      },
+      "genesSequenced": false,
+      "parents": [
+        1,
+        0
+      ],
+      "children": {}
+    }
+  }
+}
