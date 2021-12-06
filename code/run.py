@@ -1,23 +1,15 @@
-from daycare import daycare
-from common import inputString, yes
-from save import *
+# from daycare import daycare
+from common import yes
+#from save import *
+from world import World
 
 def main():
-	if yes(input("Load savefile? ")):
-		#care = loadSave("testsave")
-		care = loadSave(input("Which savefile do you want to load? "))
-	else:
-		care = daycare(input("How do you want to call your pigeon care?\n"), "../input/pigeonNames.json", "../input/help.txt")
-	care.do("help")
-
+	w = World("Test", "test")
 	while True:
 		try:
-			if care.do(input(inputString())) == 0:
-				break
+			w.command(input("Input command\n"))
 		except EOFError:
-				print("\n")
-				break
-		except IndexError:
-			continue
+			print("End game")
+			break
 
 main()

@@ -1,0 +1,9 @@
+{
+	"pigeon":{
+		"averageLifeExpectancy":72,
+		"canBreed":true,
+		"childLower":2,
+		"childUpper":2,
+		"fertility":25
+	}
+}
