@@ -1,6 +1,16 @@
 from random import choice
+from json import load
 
 class genetics:
+    # Initilize genetics
+    genetics = load(open("../input/genetics.json"))
+
+    # Shared variables, all iterations of the class will be affected should they be changed
+    validMutations = genetics["possibleMutations"]
+    validGenes = genetics["possibleGenes"]
+
+    del genetics
+
     def __init__(self, genes:dict=dict()):
         self.genes = genes
 
@@ -26,3 +36,17 @@ class genetics:
                 counterDict[key] = 1
 
         return counterDict
+
+    def mutation(self):
+        key = choice(list(self.genes.keys()))
+        gene = list(self.genes[key])
+        allele = choice(gene)
+
+        mutation = choice(self.validMutations[allele])
+
+        for i in range(len(gene)):
+            if gene[i] == allele:
+                gene[i] = mutation
+                self.genes[key] = "".join(gene)
+
+                break
