@@ -20,29 +20,7 @@ class daycare:
 
 		self.randomNames = load(open(randomNameFilePath, "r"))
 		self.help = open(helpFilePath, "r").read()
-		self.genes = {
-			"chromosome0":"",
-			"chromosome1":"",
-			"chromosome2":"",
-			"chromosome3":"",
-			"chromosome4":"",
-			"chromosome5":"",
-			"chromosome6":"",
-			"chromosome7":"",
-			"chromosome8":"",
-			"chromosome9":"",
-			"chromosome10":"",
-			"chromosome11":"",
-			"chromosome12":"",
-			"chromosome13":"",
-			"chromosome14":"",
-			"chromosome15":"",
-			"chromosome16":"",
-			"chromosome17":"",
-			"chromosome18":"",
-			"chromosome19":"",
-			"chromosome20":""
-		}
+		self.genes = load(open("../input/genetics.json"))["geneBlocks"]
 		self.geneValues = ["fluff", "speed", "size"]
 		self.alleles = "ABCDEFGabcdefg"
 

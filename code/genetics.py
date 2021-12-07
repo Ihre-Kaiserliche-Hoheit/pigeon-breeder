@@ -8,6 +8,7 @@ class genetics:
     # Shared variables, all iterations of the class will be affected should they be changed
     validMutations = genetics["possibleMutations"]
     validGenes = genetics["possibleGenes"]
+    geneBlocks = genetics["geneBlocks"]
 
     del genetics
 
@@ -53,7 +54,7 @@ class genetics:
                 break
 
     def geneString(self):
-		# Returns a continues string from self.genes
+    # Returns a continues string from self.genes
         geneString = ""
 
         for chromosomeKey in self.genes:

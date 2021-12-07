@@ -17,5 +17,28 @@
     "e":"E",
     "f":"F",
     "g":"G"
+  },
+  "geneBlocks":{
+    "chromosome0":"",
+    "chromosome1":"",
+    "chromosome2":"",
+    "chromosome3":"",
+    "chromosome4":"",
+    "chromosome5":"",
+    "chromosome6":"",
+    "chromosome7":"",
+    "chromosome8":"",
+    "chromosome9":"",
+    "chromosome10":"",
+    "chromosome11":"",
+    "chromosome12":"",
+    "chromosome13":"",
+    "chromosome14":"",
+    "chromosome15":"",
+    "chromosome16":"",
+    "chromosome17":"",
+    "chromosome18":"",
+    "chromosome19":"",
+    "chromosome20":""
   }
 }
