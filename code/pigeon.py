@@ -1,7 +1,8 @@
 from common import *
+from genetics import genetics
 from string import digits, ascii_letters
 
-class pigeonClass:
+class pigeonClass(genetics):
 	def __init__(self, pigeonUID, name, sex, parents:list=None, genes:dict=dict()):
 		self.uid = pigeonUID
 		self.name = name
@@ -44,12 +45,6 @@ class pigeonClass:
 			parents = parents.rstrip(", ")
 
 		return parents if parents != "" else None
-
-	def showGenes(self):
-		geneString = ""
-		for chromosomeKey in self.genes:
-			geneString += self.genes[chromosomeKey]
-		return geneString
 
 	def show(self):
 		stringyBoi = ("UID: %s \n"%(self.uid) +

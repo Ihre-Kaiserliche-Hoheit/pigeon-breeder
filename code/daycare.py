@@ -315,7 +315,7 @@ class daycare:
 
 			case "genetics":
 				try:
-					print(self.pigeons[command[1]].showGenes())
+					print(self.pigeons[command[1]].geneString())
 				except KeyError:
 					print("Pigeon not found")
 				except IndexError:

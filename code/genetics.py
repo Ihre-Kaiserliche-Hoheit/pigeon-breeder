@@ -38,6 +38,7 @@ class genetics:
         return counterDict
 
     def mutation(self):
+        # Randomly mutates one allele
         key = choice(list(self.genes.keys()))
         gene = list(self.genes[key])
         allele = choice(gene)
@@ -50,3 +51,12 @@ class genetics:
                 self.genes[key] = "".join(gene)
 
                 break
+
+    def geneString(self):
+		# Returns a continues string from self.genes
+        geneString = ""
+
+        for chromosomeKey in self.genes:
+            geneString += self.genes[chromosomeKey]
+
+        return geneString
