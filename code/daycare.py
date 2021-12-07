@@ -22,7 +22,7 @@ class daycare:
 		self.help = open(helpFilePath, "r").read()
 		self.genes = load(open("../input/genetics.json"))["geneBlocks"]
 		self.geneValues = ["fluff", "speed", "size"]
-		self.alleles = "ABCDEFGabcdefg"
+		self.alleles = load(open("../input/genetics.json"))["possibleGenes"]
 
 	def getPigeonUID(self):
 		return len(self.allPigeons) # Returns a UID for the most recent pigeon
