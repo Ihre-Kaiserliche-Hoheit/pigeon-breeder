@@ -1,29 +1,35 @@
 from genetics import *
 
 class Creature(Genetics):
-    livingCreatures = dict()
-    allCreatures = dict()
+	livingCreatures = dict()
+	allCreatures = dict()
 
-    def __init__(self, UID, genes:dict, parents:dict=dict(), isAlive:bool=True):
-        self.UID = UID
+	def __init__(self, UID, isFemale:bool, species:any, genes:dict, parents:list=list(), isAlive:bool=True):
+		self.UID = UID
 
-        self.genes = genes
+		self.species = species
 
-        self.parents = parents
-        self.children = dict()
+		self.genes = genes
+		self.age = 0
 
-        self.isAlive = isAlive
+		self.parents = parents
+		self.children = list()
 
-    def addChildren(self, children:list=list(), parents:list=list()):
-        parents.append(self) # Makes sure self is always in the list
-        parents = list(set(parents)) # Removes duplicates from the list
-        children = list(set(children)) # Same as above but for children
+		self.isAlive = isAlive
+		self.isFemale = isFemale
+		self.canReproduce = species.canBreed
 
-        for parent in parents:
-            for child in children:
-                parent.children[child.UID] = child
+		self.didAct = True
 
-    def returnParentsAsString(self):
+	def addChildren(self, children:list=list(), parents:list=list()):
+		parents.append(self) # Makes sure self is always in the list
+		parents = list(set(parents)) # Removes duplicates from the list
+		children = list(set(children)) # Same as above but for children
+
+		for parent in parents:
+			parent.children = children
+
+	def returnParentsAsString(self):
 		parentString = ""
 
 		for parentUID in self.parents:
@@ -32,31 +38,14 @@ class Creature(Genetics):
 
 		return parentString # If no parents exist for the creature returns an empty string
 
-    def returnGeneString(self):
-        geneString = ""
+	def getGender(self):
+		# Converts self.isFemale into a string that either says female or male
+		return "female" if self.isFemale else "male"
 
-        for geneKey in self.genes:
-            geneString += self.genes[geneKey]
+	def birth(self):
+		self.allCreatures[self.UID] = self
+		self.livingCreatures[self.UID] = self
 
-    def countAlleles(self):
-        alleleCount = dict()
-
-        for geneKey in self.genes:
-            alleles = "".join(sorted(list(self.genes[geneKey])))
-
-    		for allele in alleles:
-    			lenAlleles = len(set([al.lower() for al in alleles])) # What is this doing?
-    			if lenAlleles == 1:
-    				try:
-    					alleleCount[allele] += 2
-    				except KeyError:
-    					alleleCount[allele] = 2
-    				break # Jumps to next loop as all alleles were counted
-
-    			elif lenAlleles == 2:
-    				try:
-    					alleleCount[alleles[0]] += 1
-    				except KeyError:
-    					alleleCount[alleles[0]] = 1
-
-        return alleleCount # Returns always a dict, but may sometimes be empty
+	def death(self):
+		self.isAlive = False
+		del self.livingCreatures[self.UID]
