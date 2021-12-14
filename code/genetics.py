@@ -54,7 +54,7 @@ class Genetics:
                 break
 
     def geneString(self):
-    # Returns a continues string from self.genes
+    	# Returns a continues string from self.genes
         geneString = ""
 
         for chromosomeKey in self.genes:

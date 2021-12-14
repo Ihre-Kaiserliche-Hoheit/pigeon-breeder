@@ -32,31 +32,10 @@ class Creature(Genetics):
 
 		return parentString # If no parents exist for the creature returns an empty string
 
-    def returnGeneString(self):
-        geneString = ""
+	def birth(self):
+		self.allCreatures[self.UID] = self
+		self.livingCreatures[self.UID] = self
 
-        for geneKey in self.genes:
-            geneString += self.genes[geneKey]
-
-    def countAlleles(self):
-        alleleCount = dict()
-
-        for geneKey in self.genes:
-            alleles = "".join(sorted(list(self.genes[geneKey])))
-
-    		for allele in alleles:
-    			lenAlleles = len(set([al.lower() for al in alleles])) # What is this doing?
-    			if lenAlleles == 1:
-    				try:
-    					alleleCount[allele] += 2
-    				except KeyError:
-    					alleleCount[allele] = 2
-    				break # Jumps to next loop as all alleles were counted
-
-    			elif lenAlleles == 2:
-    				try:
-    					alleleCount[alleles[0]] += 1
-    				except KeyError:
-    					alleleCount[alleles[0]] = 1
-
-        return alleleCount # Returns always a dict, but may sometimes be empty
+	def death(self):
+		self.isAlive = False
+		del self.livingCreatures[self.UID]

@@ -27,13 +27,11 @@ def convertPigeonSave(pigeon):
         "isFemale":pigeon.isFemale,
         "canReproduce":pigeon.canReproduce,
         "isAlive":pigeon.isAlive,
-        "timesBreed":pigeon.timesBreed,
         "didAct":pigeon.didAct,
         "genes":pigeon.genes,
-        "effectiveValues":pigeon.effectiveValues,
         "genesSequenced":pigeon.genesSequenced,
-        "parents":pigeon.parents if pigeon.parents == None else [parent.uid for parent in pigeon.parents],
-        "children":pigeon.children if len(pigeon.children) == 0 else [pigeon.children[childKey].uid for childKey in pigeon.children]
+        "parents":list(pigeon.parents.keys()),
+        "children":list(pigeon.children.keys())
     }
 
 def loadSave(gameName):
