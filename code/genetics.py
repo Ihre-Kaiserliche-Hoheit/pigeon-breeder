@@ -1,7 +1,7 @@
 from random import choice
 from json import load
 
-class genetics:
+class Genetics:
     # Initilize genetics
     genetics = load(open("../input/genetics.json"))
 
