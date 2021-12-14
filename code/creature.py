@@ -4,7 +4,7 @@ class Creature(Genetics):
     livingCreatures = dict()
     allCreatures = dict()
 
-    def __init__(self, UID, genes:dict, parents:dict=dict(), isAlive:bool=True:
+    def __init__(self, UID, genes:dict, parents:dict=dict(), isAlive:bool=True):
         self.UID = UID
 
         self.genes = genes
@@ -14,7 +14,7 @@ class Creature(Genetics):
 
         self.isAlive = isAlive
 
-    def addChild(self, children:list=list(), parents:list=list()):
+    def addChildren(self, children:list=list(), parents:list=list()):
         parents.append(self) # Makes sure self is always in the list
         parents = list(set(parents)) # Removes duplicates from the list
         children = list(set(children)) # Same as above but for children
