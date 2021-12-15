@@ -4,7 +4,7 @@ class Creature(Genetics):
 	livingCreatures = dict()
 	allCreatures = dict()
 
-	def __init__(self, UID, isFemale:bool, species:any, genes:dict, parents:dict=dict(), isAlive:bool=True):
+	def __init__(self, UID, isFemale:bool, species:any, genes:dict, parents:list=list(), isAlive:bool=True):
 		self.UID = UID
 
 		self.species = species
@@ -13,7 +13,7 @@ class Creature(Genetics):
 		self.age = 0
 
 		self.parents = parents
-		self.children = dict()
+		self.children = list()
 
 		self.isAlive = isAlive
 		self.isFemale = isFemale
@@ -27,8 +27,7 @@ class Creature(Genetics):
 		children = list(set(children)) # Same as above but for children
 
 		for parent in parents:
-			for child in children:
-				parent.children[child.UID] = child
+			parent.children = children
 
 	def returnParentsAsString(self):
 		parentString = ""
