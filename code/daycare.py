@@ -29,7 +29,7 @@ class daycare:
 		return choice(self.randomNames[sex.lower()]) # Returns random name
 
 	def createCreature(self, name, isFemale, parents:list=None, genes:dict=dict()):
-		newCreature = Pigeon(name, isFemale, parents, genes)
+		newCreature = Creature(name, isFemale, parents, genes)
 		newCreature.birth()
 
 		return newCreature
@@ -82,7 +82,7 @@ class daycare:
 
 	def breed(self, parents):
 		modifier = 0 # Modifies the propability of reproduction, pigeons that breed the first time should get a modifier = 2
-		alwaysSucceed = isDebugOn # Left in for potential future uses
+		alwaysSucceed = self.isDebugOn # Left in for potential future uses
 
 		for parent in parents:
 			parent.didAct = True
