@@ -1,5 +1,6 @@
-from pigeon import *
+from creature import *
 from common import *
+from species import *
 from save import *
 from random import getrandbits, randint, choice, choices
 from json import load
@@ -13,6 +14,8 @@ class daycare:
 		self.wealth = 50
 
 		self.isDebugOn = True
+
+		self.species = dict()
 
 		self.breedingDifficulty = 25 # The n out of 100 chance to successfully reproduce
 

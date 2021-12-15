@@ -4,15 +4,22 @@ class Creature(Genetics):
     livingCreatures = dict()
     allCreatures = dict()
 
-    def __init__(self, UID, genes:dict, parents:dict=dict(), isAlive:bool=True):
+    def __init__(self, UID, isFemale:bool, species:any, genes:dict, parents:dict=dict(), isAlive:bool=True):
         self.UID = UID
 
+		self.species = species
+
         self.genes = genes
+		self.age = 0
 
         self.parents = parents
         self.children = dict()
 
         self.isAlive = isAlive
+		self.isFemale = isFemale
+		self.canReproduce = species.canBreed
+
+		self.didAct = True
 
     def addChildren(self, children:list=list(), parents:list=list()):
         parents.append(self) # Makes sure self is always in the list
@@ -31,6 +38,10 @@ class Creature(Genetics):
 		parentString = parentString.rstrip(", ")
 
 		return parentString # If no parents exist for the creature returns an empty string
+
+	def getGender(self):
+		# Converts self.isFemale into a string that either says female or male
+		return "female" if self.isFemale else "male"
 
 	def birth(self):
 		self.allCreatures[self.UID] = self
