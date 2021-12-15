@@ -34,10 +34,10 @@ class daycare:
 	def calcCost(self, pigeonValues):
 		pass
 
-	def buyPigeon(self):
+	def buyCreature(self):
 		pass
 
-	def sellPigeon(self, UID):
+	def sellCreature(self, UID):
 		# Code to sell pigeons goes here
 		if not self.isValidPigeon(UID):
 			print("Pigeon not found or dead, try another pigeon")
@@ -55,6 +55,15 @@ class daycare:
 
 		else:
 			print("Okay, then not")
+
+	def genetics(self, parents:list):
+		genes = parents[0].geneBlocks
+
+		for parent in parents:
+			for gene in genes:
+				genes[gene] += parent.genes[gene]
+
+		return genes
 
 	def reproduce(self, parents:list, numberOfChildren:int):
 		for i in range(numberOfChildren):
@@ -214,10 +223,10 @@ class daycare:
 					print("Pigeon not found")
 
 			case "buy":
-				self.buyPigeon()
+				self.buyCreature()
 
 			case "sell":
-				self.sellPigeon(command[1])
+				self.sellCreature(command[1])
 
 			case "genetics":
 				try:

@@ -22,7 +22,8 @@ class Pigeon(Creature):
 		self.children = dict() # Dictionary of all children
 
 	def getGender(self):
-		return "Female" if self.isFemale else "Male"
+		# Converts self.isFemale into a string that either says female or male
+		return "female" if self.isFemale else "male"
 
 	def show(self):
 		showString = ("UID: %s \n"%(self.UID) +
