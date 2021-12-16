@@ -4,7 +4,7 @@ from common import yes
 from world import World
 
 def main():
-	w = World("Test")
+	w = World("Test", "test")
 	while True:
 		try:
 			w.command(input("Input command\n"))
