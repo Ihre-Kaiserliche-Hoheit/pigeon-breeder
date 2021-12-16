@@ -12,8 +12,8 @@ class World:
 
         self.wealth = 50
 
-        self.randomNames = load(open(randomNameFilePath, "r"))
-        self.help = open(helpFilePath, "r").read()
+        self.randomNames = load(open("../input/pigeonNames.json", "r"))
+        self.help = open("../input/help.txt", "r").read()
         self.genes = load(open("../input/genetics.json"))["geneBlocks"]
         self.geneValues = ["fluff", "speed", "size"]
         self.alleles = load(open("../input/genetics.json"))["possibleGenes"]
@@ -33,6 +33,10 @@ class World:
         command = command.lower().split()
 
         match command[0]:
+
+            case "help" | "h" | "?":
+                print(self.help)
+
             case "quit" | "q":
                 raise EOFError
 
